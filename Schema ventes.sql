@@ -1,0 +1,1 @@
+CREATE TABLE 'ventes' ('c1' TEXT,'c2' TEXT,'c3' TEXT,'c4' TEXT,'c5' TEXT)
