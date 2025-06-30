@@ -20,6 +20,7 @@ d’améliorer leur prise de décision stratégique.
 Dans un premier temps, votre responsable technique vous demande de réaliser une analyse préalable afin
 de mieux cadrer le projet final. Pour cela, le client vous a fourni un extrait de leur jeu de données des
 ventes sur 20 jours.
+<img height="300" src="/img/ventes_sql.png" width="350"/>
 
 Vous devez prendre connaissance du jeu de données et en comprendre ses principales caractéristiques.
 Puis vous devez importer ce jeu de données dans une base de données en ligne puis requêter les données
@@ -34,7 +35,7 @@ ventes.
 3. Créez les requêtes SQL pour répondre aux questions clés sur les ventes de l'entreprise :
 
 
-   - a. le chiffre d'affaire total du 1er au 20 janvier 2022 :
+   - **a. le chiffre d'affaire total du 1er au 20 janvier 2022 :**
    
    ```SQL
    SELECT c2, c3, SUM(c3) AS GLOBAL_CA FROM ventes;
@@ -43,11 +44,11 @@ ventes.
 | :--- | :--- | :--- |
 | produit | prix | 575 |
 
-   - b. les ventes par produit du 1er au 20 janvier 2022 :
+   - **b. les ventes par produit du 1er au 20 janvier 2022 :**
 
 Le produit C s'est le mieux vendu avec 20 produits vendus.
 
-Le produit A s'est le moins vendu avec 10 produits vendus.
+Le produit A s'est le moins vendu avec seulement 10 produits vendus.
    ```SQL
    SELECT c2, c3, SUM(c3) AS GLOBAL_CA_BY_PRODUCT FROM ventes GROUP BY c2;
    ```
@@ -58,7 +59,7 @@ Le produit A s'est le moins vendu avec 10 produits vendus.
 | Produit C | 20 | 240 |
 | produit | prix | 0 |
 
-   - c. les ventes par région :
+   **- c. les ventes par région :**
    - les ventes ont été meilleures dans la région Nord du 1er au 20 janvier 2022
 
 ```SQL
@@ -71,26 +72,11 @@ SELECT c5, SUM(c3) AS GLOBAL_CA_BY_REGION FROM ventes GROUP BY c5;
 | region | 0 |
 
 
-
 6. En vous appuyant sur l’exemple donné, créer deux nouveaux graphiques :
-   - a. les ventes par produit :
+   - **a. les ventes par produit :**
    
    <img height="300" src="/img/q_v_p.png" width="300"/>
    
-   - b. le chiffre d'affaires par produit.
-
-_Ressources associées_
-
-● https://sql.sh/sgbd
-
-● https://sqliteonline.com/
-
-● https://plotly.com/python/plotly-express/
-
-_**Livrables**_
-
-● L’export SQL de vos requêtes (depuis le menu file > save SQL).
-
-● Une fiche synthèse des résultats d’analyse obtenus (point 3.a, 3.b, 3.c).
-
-● Le lien vers votre projet Glitch complété (point 6). *
+   - **b. le chiffre d'affaires par produit :**
+   - 
+   <img height="300" src="/img/q_ca_p.png" width="350"/>
