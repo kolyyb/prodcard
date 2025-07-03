@@ -38,11 +38,17 @@ ventes.
    - **a. le chiffre d'affaire total du 1er au 20 janvier 2022 :**
    
    ```SQL
-   SELECT c2, c3, SUM(c3) AS GLOBAL_CA FROM ventes;
+   SELECT SUM(ca_by_produit) as ca
+from (
+select produit, Prix_Unitaire * qte as ca_by_produit
+      from (
+      SELECT C2 as produit, C3 as 'Prix_Unitaire', sum(c4) as qte
+            from ventes
+            group by produit
+            )
+      group by produit);
    ```
-| c2 | c3 | GLOBAL\_CA |
-| :--- | :--- | :--- |
-| produit | prix | 575 |
+44825
 
    - **b. les ventes par produit du 1er au 20 janvier 2022 :**
 
@@ -50,26 +56,32 @@ Le produit C s'est le mieux vendu avec 20 produits vendus.
 
 Le produit A s'est le moins vendu avec seulement 10 produits vendus.
    ```SQL
-   SELECT c2, c3, SUM(c3) AS GLOBAL_CA_BY_PRODUCT FROM ventes GROUP BY c2;
+SELECT Produit, SUM( Quantite_x_Prix) as CA_by_Produit
+FROM (SELECT c2 as Produit, c4 as quantite, c3 as Prix_unitaire, c3 * c4  as Quantite_x_Prix  FROM ventes)
+GROUP BY Produit;
    ```
-| c2 | c3 | GLOBAL\_CA\_BY\_PRODUCT |
-| :--- | :--- | :--- |
-| Produit A | 10 | 140 |
-| Produit B | 15 | 195 |
-| Produit C | 20 | 240 |
-| produit | prix | 0 |
+| produit | ca\_by\_produit |
+| :--- | :--- |
+| Produit A | 17500 |
+| Produit B | 15825 |
+| Produit C | 11500 |
+| produit | 0 |
+
 
    **- c. les ventes par région :**
    - les ventes ont été meilleures dans la région Nord du 1er au 20 janvier 2022
 
 ```SQL
-SELECT c5, SUM(c3) AS GLOBAL_CA_BY_REGION FROM ventes GROUP BY c5;
+SELECT region, SUM(Quantite_x_Prix) as CA_by_Region
+FROM (SELECT c3 as Prix_unitaire, c5 as Region, c4 * c3 as Quantite_x_Prix FROM ventes)
+GROUP BY Region;
 ```
-| c5 | GLOBAL\_CA\_BY\_REGION |
+| Region | CA\_by\_Region |
 | :--- | :--- |
-| Nord | 295 |
-| Sud | 280 |
+| Nord | 20725 |
+| Sud | 24100 |
 | region | 0 |
+
 
 
 6. En vous appuyant sur l’exemple donné, créer deux nouveaux graphiques :
