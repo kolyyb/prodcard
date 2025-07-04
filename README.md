@@ -35,20 +35,15 @@ ventes.
 3. Créez les requêtes SQL pour répondre aux questions clés sur les ventes de l'entreprise :
 
 
-   - **a. le chiffre d'affaire total du 1er au 20 janvier 2022 :**
+   - ### **a. le chiffre d'affaire total du 1er au 20 janvier 2022 :**
    
    ```SQL
-   SELECT SUM(ca_by_produit) as ca
-from (
-select produit, Prix_Unitaire * qte as ca_by_produit
-      from (
-      SELECT C2 as produit, C3 as 'Prix_Unitaire', sum(c4) as qte
-            from ventes
-            group by produit
-            )
-      group by produit);
+SELECT c2 as Produits, sum(c3 * c4) as CA_Global FROM ventes;
    ```
-44825
+| Produits | CA\_Global |
+| :--- | :--- |
+| produit | 44825 |
+
 
    - **b. les ventes par produit du 1er au 20 janvier 2022 :**
 
@@ -56,9 +51,8 @@ Le produit C s'est le mieux vendu avec 20 produits vendus.
 
 Le produit A s'est le moins vendu avec seulement 10 produits vendus.
    ```SQL
-SELECT Produit, SUM( Quantite_x_Prix) as CA_by_Produit
-FROM (SELECT c2 as Produit, c4 as quantite, c3 as Prix_unitaire, c3 * c4  as Quantite_x_Prix  FROM ventes)
-GROUP BY Produit;
+SELECT c2 as Produits, c3 as prix_unitaire, c4 as quantite, sum(c3 * c4) as CA_by_Produit FROM ventes
+GROUP BY c2;
    ```
 | produit | ca\_by\_produit |
 | :--- | :--- |
@@ -68,13 +62,12 @@ GROUP BY Produit;
 | produit | 0 |
 
 
-   **- c. les ventes par région :**
+   ## **- c. les ventes par région :**
    - les ventes ont été meilleures dans la région Nord du 1er au 20 janvier 2022
 
 ```SQL
-SELECT region, SUM(Quantite_x_Prix) as CA_by_Region
-FROM (SELECT c3 as Prix_unitaire, c5 as Region, c4 * c3 as Quantite_x_Prix FROM ventes)
-GROUP BY Region;
+SELECT c5 as Region, sum(c3 * c4)  as CA_by_Region  FROM ventes
+group by c5;
 ```
 | Region | CA\_by\_Region |
 | :--- | :--- |
