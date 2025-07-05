@@ -82,8 +82,11 @@ group by c5;
    
    <img height="300" src="/img/q_v_p.png" width="300"/>
    
-   - **b. le chiffre d'affaires par produit :**
+   - **b. les ventes par region :**
    - 
-   <img height="300" src="/img/q_ca_p.png" width="350"/>
+   <img height="300" src="/img/v_r.png" width="350"/>
 
  - **c. le chiffre d'affaire par produit :**
+
+<img height="300" src="/img/ca_p.png" width="350"/>
+
