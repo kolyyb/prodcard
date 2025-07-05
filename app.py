@@ -3,7 +3,9 @@ import pandas as pd
 
 src_file = 'csv/ventes.csv'
 donnees = pd.read_csv(src_file)
-ca = donnees
+
+# Rajout colonne 'ca_par_produit' qui contient le resultat du calcul  prix unitaire * quantite
+donnees['ca_par_produit'] = donnees.qte * donnees.prix
 
 def create_graph(donnees, values, names, title) :
     figure = px.pie(donnees, values=values, names=names, title=title)
@@ -17,7 +19,7 @@ def create_graph(donnees, values, names, title) :
 
 create_graph(donnees,'qte', 'region', 'quantite vendue par region')
 create_graph(donnees,'qte', 'produit', 'quantite vendue par produit')
-create_graph(donnees,'prix', 'produit', 'CA par produit')
+create_graph(donnees, 'ca_par_produit', 'produit', 'CA par produit')
 
 
 # figure = px.pie(donnees, values='qte', names='region', title='quantité vendue par région')

@@ -85,3 +85,5 @@ group by c5;
    - **b. le chiffre d'affaires par produit :**
    - 
    <img height="300" src="/img/q_ca_p.png" width="350"/>
+
+ - **c. le chiffre d'affaire par produit :**
